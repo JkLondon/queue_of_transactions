@@ -1,0 +1,182 @@
+basePath: /api
+definitions:
+  models.Client:
+    properties:
+      balance:
+        minimum: 0
+        type: integer
+      id:
+        type: string
+    required:
+    - id
+    type: object
+  models.Transaction:
+    properties:
+      balance:
+        minimum: 0
+        type: integer
+      client_id:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: string
+      status:
+        maxLength: 255
+        type: string
+      transaction_type:
+        maxLength: 255
+        type: string
+    required:
+    - client_id
+    - id
+    - status
+    - transaction_type
+    type: object
+info:
+  contact:
+    email: your@mail.com
+    name: API Support
+  description: This is an auto-generated API Docs.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: API
+  version: "1.0"
+paths:
+  /v1/books:
+    get:
+      consumes:
+      - application/json
+      description: Get all exists clients.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Client'
+            type: array
+      summary: get all exists clients
+      tags:
+      - Clients
+  /v1/client:
+    post:
+      consumes:
+      - application/json
+      description: Create a new client.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Client'
+      summary: create a new client
+      tags:
+      - Client
+    put:
+      consumes:
+      - application/json
+      description: Update client.
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: ok
+          schema:
+            type: string
+      summary: update client
+      tags:
+      - Client
+  /v1/client/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Get client by given ID.
+      parameters:
+      - description: Client ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Client'
+      summary: get client by given ID
+      tags:
+      - Client
+  /v1/transaction:
+    post:
+      consumes:
+      - application/json
+      description: Create a new transaction.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Transaction'
+      summary: create a new transaction
+      tags:
+      - Transaction
+    put:
+      consumes:
+      - application/json
+      description: Update transaction.
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: ok
+          schema:
+            type: string
+      summary: update transaction
+      tags:
+      - Transaction
+  /v1/transaction/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Get transaction by given ID.
+      parameters:
+      - description: Transaction ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Transaction'
+      summary: get transaction by given ID
+      tags:
+      - Transaction
+  /v1/transactions:
+    get:
+      consumes:
+      - application/json
+      description: Get all exists transactions.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Transaction'
+            type: array
+      summary: get all exists transactions
+      tags:
+      - Transactions
+swagger: "2.0"
